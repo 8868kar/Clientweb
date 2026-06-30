@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Locations | MHOMES</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&amp;family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Inter:wght@300;400;500;600&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;family=Playfair+Display:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                "on-tertiary-fixed": "#0a2014",
+                "secondary": "#cac6be",
+                "outline": "#9a8f7e",
+                "surface-bright": "#3a3939",
+                "secondary-fixed": "#e7e2d9",
+                "primary-fixed": "#ffdf9d",
+                "on-primary": "#3f2e00",
+                "on-surface-variant": "#d1c5b2",
+                "tertiary-container": "#95ad9c",
+                "surface-dim": "#131313",
+                "on-primary-fixed": "#251a00",
+                "on-background": "#e5e2e1",
+                "on-tertiary-fixed-variant": "#364c3e",
+                "primary": "#eac168",
+                "on-tertiary-container": "#2c4134",
+                "on-surface": "#e5e2e1",
+                "secondary-fixed-dim": "#cac6be",
+                "surface-tint": "#eac168",
+                "surface-container": "#201f1f",
+                "on-secondary-container": "#b9b5ac",
+                "on-secondary-fixed": "#1d1c16",
+                "secondary-container": "#494740",
+                "on-secondary-fixed-variant": "#494740",
+                "on-error": "#690005",
+                "inverse-surface": "#e5e2e1",
+                "surface-variant": "#353534",
+                "background": "#131313",
+                "outline-variant": "#4e4637",
+                "tertiary-fixed": "#d0e9d6",
+                "on-error-container": "#ffdad6",
+                "primary-fixed-dim": "#eac168",
+                "surface-container-lowest": "#0e0e0e",
+                "tertiary-fixed-dim": "#b4ccbb",
+                "surface-container-highest": "#353534",
+                "error-container": "#93000a",
+                "on-primary-fixed-variant": "#5b4300",
+                "surface-container-high": "#2a2a2a",
+                "inverse-on-surface": "#313030",
+                "error": "#ffb4ab",
+                "primary-container": "#c8a24c",
+                "surface": "#131313",
+                "on-primary-container": "#4e3900",
+                "surface-container-low": "#1c1b1b",
+                "on-tertiary": "#203529",
+                "inverse-primary": "#785a04",
+                "tertiary": "#b4ccbb",
+                "on-secondary": "#32302b"
+            },
+            "borderRadius": {
+                "DEFAULT": "0.25rem",
+                "lg": "0.5rem",
+                "xl": "0.75rem",
+                "full": "9999px"
+            },
+            "spacing": {
+                "container-max": "1440px",
+                "unit": "8px",
+                "gutter": "24px",
+                "margin-desktop": "80px",
+                "margin-mobile": "20px",
+                "section-padding": "120px"
+            },
+            "fontFamily": {
+                "headline-md": ["Playfair Display"],
+                "display-lg": ["Playfair Display"],
+                "data-lg": ["Space Grotesk"],
+                "body-sm": ["Inter"],
+                "headline-lg": ["Playfair Display"],
+                "body-md": ["Inter"],
+                "headline-sm": ["Playfair Display"],
+                "body-lg": ["Inter"],
+                "data-sm": ["Space Grotesk"]
+            },
+            "fontSize": {
+                "headline-md": ["32px", {"lineHeight": "40px", "fontWeight": "500"}],
+                "display-lg": ["64px", {"lineHeight": "72px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                "data-lg": ["20px", {"lineHeight": "24px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                "headline-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                "headline-sm": ["24px", {"lineHeight": "32px", "fontWeight": "500"}],
+                "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                "data-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+            transition: all 0.3s ease;
+        }
+        .luxury-gradient {
+            background: linear-gradient(180deg, rgba(19, 19, 19, 0) 0%, rgba(19, 19, 19, 0.9) 100%);
+        }
+        .glass-nav {
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+        .editorial-reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .editorial-reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .thin-gold-border {
+            border: 0.5px solid rgba(234, 193, 104, 0.2);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background selection:bg-primary/30 selection:text-primary overflow-x-hidden">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 border-b border-outline-variant/20 bg-transparent glass-nav">
+<div class="flex justify-between items-center px-margin-desktop py-6 max-w-container-max mx-auto">
+<span class="font-headline-sm text-headline-sm tracking-tighter text-primary">MHOMES</span>
+<div class="hidden md:flex items-center gap-10">
+<a class="font-data-sm text-data-sm tracking-[0.2em] text-on-surface-variant hover:text-primary transition-colors duration-500" href="#">RESERVATIONS</a>
+<a class="font-data-sm text-data-sm tracking-[0.2em] text-primary font-bold border-b border-primary pb-1" href="#">ESTATES</a>
+<a class="font-data-sm text-data-sm tracking-[0.2em] text-on-surface-variant hover:text-primary transition-colors duration-500" href="#">JOURNAL</a>
+<a class="font-data-sm text-data-sm tracking-[0.2em] text-on-surface-variant hover:text-primary transition-colors duration-500" href="#">ABOUT</a>
+<a class="font-data-sm text-data-sm tracking-[0.2em] text-on-surface-variant hover:text-primary transition-colors duration-500" href="#">WAITLIST</a>
+</div>
+<button class="font-data-sm text-data-sm tracking-[0.2em] bg-primary text-on-primary-container px-6 py-2 active:scale-95 duration-300 transition-all">ENQUIRE</button>
+</div>
+</nav>
+<!-- Hero Section -->
+<header class="relative h-[819px] flex flex-col justify-center items-center text-center overflow-hidden">
+
+<div class="relative z-10 px-margin-mobile md:px-margin-desktop">
+<p class="font-data-sm text-data-sm tracking-[0.4em] text-primary mb-6 editorial-reveal">PRIVATE SANCTUARIES</p>
+<h1 class="font-display-lg text-display-lg text-primary max-w-4xl editorial-reveal" style="transition-delay: 200ms;">Curating the Extraordinary</h1>
+<div class="mt-12 editorial-reveal" style="transition-delay: 400ms;">
+<span class="material-symbols-outlined text-primary text-4xl animate-bounce">expand_more</span>
+</div>
+</div>
+<div class="absolute bottom-0 w-full h-1/4 luxury-gradient"></div>
+</header>
+<main class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-section-padding">
+<!-- Regional Selection Helper -->
+<div class="flex flex-wrap gap-8 mb-24 justify-center border-b border-outline-variant/30 pb-8">
+<a class="font-data-sm text-data-sm tracking-[0.1em] text-secondary hover:text-primary transition-all" href="#north">NORTH</a>
+<a class="font-data-sm text-data-sm tracking-[0.1em] text-secondary hover:text-primary transition-all" href="#south">SOUTH</a>
+<a class="font-data-sm text-data-sm tracking-[0.1em] text-secondary hover:text-primary transition-all" href="#east">EAST</a>
+<a class="font-data-sm text-data-sm tracking-[0.1em] text-secondary hover:text-primary transition-all" href="#west">WEST</a>
+<a class="font-data-sm text-data-sm tracking-[0.1em] text-secondary hover:text-primary transition-all" href="#ut">UNION TERRITORIES</a>
+</div>
+<!-- NORTH Section -->
+<section class="mb-32" id="north">
+<div class="flex items-end justify-between mb-12 border-b border-outline-variant/20 pb-4">
+<h2 class="font-headline-lg text-headline-lg text-primary italic">The North</h2>
+<span class="font-data-sm text-data-sm text-outline tracking-widest uppercase">Highlands &amp; Heritage</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter">
+<!-- Rajasthan -->
+<div class="group relative overflow-hidden thin-gold-border bg-surface-container-low">
+<div class="aspect-[16/9] overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="A cinematic, low-angle shot of a luxury desert pavilion in Rajasthan during the golden hour. The architecture features delicate stone latticework and arched entryways in a warm ochre tone. The vast Thar desert dunes ripple in the background under a deep amber sky. The atmosphere is quiet, regal, and ancient, aligned with a premium dark-mode aesthetic and gold lighting accents." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDxZKaVH3jnFUcnnccZut1UxRQACJ1d9htv5cAZm6DoqvG9gv1fA0IXLZq7p9ihetyQu3B9j_B86xhDzmRkI59JvS-5u4YZcB9j22nBTUH1rBVQwvyEZIeUD7Xd7cpw6Cix-gAondK26xgcZzEk5gHQy4GEGas1Aw1sLryR1BjRyA6Z86RCCnX0EJOGktEzmRU_kN1SZN7crvQX6Z05BCQErObSxjei29DcIYic3QPVOtLhVxRV9cjPjgQkI8reUiVYhHOAZtVd4r0j"/>
+</div>
+<div class="p-8">
+<div class="flex justify-between items-start mb-4">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Rajasthan</h3>
+<span class="bg-primary/10 text-primary text-[10px] px-2 py-1 tracking-tighter border border-primary/20">LAUNCHING SOON</span>
+</div>
+<p class="font-body-sm text-body-sm text-secondary mb-8 leading-relaxed">Where desert sands meet golden heritage and royal whispers.</p>
+<div class="flex justify-between items-center">
+<button class="w-12 h-12 rounded-full border border-primary/30 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-on-primary transition-all duration-500">
+<span class="material-symbols-outlined">arrow_outward</span>
+</button>
+<span class="font-data-sm text-data-sm tracking-widest text-outline">EXPLORE</span>
+</div>
+</div>
+</div>
+<!-- Uttarakhand -->
+<div class="group relative overflow-hidden thin-gold-border bg-surface-container-low lg:mt-12">
+<div class="aspect-[16/9] overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="A serene, minimalist mountain retreat nestled in the mist-covered foothills of Uttarakhand. The structure is built with dark charcoal slate and large panoramic glass windows reflecting the towering Himalayan peaks. Surrounded by ancient pine forests, the lighting is ethereal and cool, with a single warm lantern glow visible inside. The overall mood is one of profound silence and modern luxury." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB4bijA68wtAS6ESJZBbLXYujJ0cnSDd4VQAjMBlvawszdqV62Esk0cPELk_xnWIj2lSbka6BwpiEwLCVj7Y1kh_KpSuiCCKNrjbLjz5aqlaJDN4d7K0BS13kG8KvQoDjUoBMUGRIxVj-gZpHHF82lXHn2YK8DhXharRimT_ySx0qQhq5xqyHk5OANf5O49K2_0nEowt8ZXwe3H39SvMK_XRY7HBT-FRr9H1mFTNvxiKnQLb0LSZ7rTWkG61rLqamQXp1_vPl7i47OQ"/>
+</div>
+<div class="p-8">
+<div class="flex justify-between items-start mb-4">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Uttarakhand</h3>
+<span class="bg-primary/10 text-primary text-[10px] px-2 py-1 tracking-tighter border border-primary/20">LAUNCHING SOON</span>
+</div>
+<p class="font-body-sm text-body-sm text-secondary mb-8 leading-relaxed">Celestial heights meet the whispering pines of the lower Himalayas.</p>
+<div class="flex justify-between items-center">
+<button class="w-12 h-12 rounded-full border border-primary/30 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-on-primary transition-all duration-500">
+<span class="material-symbols-outlined">arrow_outward</span>
+</button>
+<span class="font-data-sm text-data-sm tracking-widest text-outline">EXPLORE</span>
+</div>
+</div>
+</div>
+<!-- Himachal -->
+<div class="group relative overflow-hidden thin-gold-border bg-surface-container-low">
+<div class="aspect-[16/9] overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="An ultra-exclusive glass villa perched on a rugged cliffside in Himachal Pradesh, overlooking a valley of blooming apple orchards. The sky is a dramatic twilight purple, and the building reflects the stars above. The design is contemporary yet grounded in traditional timber techniques. The aesthetic is sharp, high-contrast, and deeply immersive into the alpine wilderness." src="https://lh3.googleusercontent.com/aida-public/AB6AXuATz5i0it7w8NlxjDHruhZQP1__jME4Ch9QAVMPRwhquxK1k9sUvZ9-mjNu2CNgb8q4s8iuFTAPgixU7ipekx1escUhjD4MKSD3Y7OvRT6Q2_gy5vtefXc-qInBJNiIlQIdhcMTiIDBQQQfLFdR1l0jtNWO28mYc0aM9AwcGVDyVNfBQDblEQSrWfuh1_65OLJI5KJpt7BGat19KDh5L5l-AeDIVN4IeXyAHeyBPDR4ka5ba8rNwd1iBoDOmeXCpGy_YP6WzLrxTxiy"/>
+</div>
+<div class="p-8">
+<div class="flex justify-between items-start mb-4">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Himachal</h3>
+<span class="bg-primary/10 text-primary text-[10px] px-2 py-1 tracking-tighter border border-primary/20">LAUNCHING SOON</span>
+</div>
+<p class="font-body-sm text-body-sm text-secondary mb-8 leading-relaxed">Alpine dreams etched into the rugged ridges of the North.</p>
+<div class="flex justify-between items-center">
+<button class="w-12 h-12 rounded-full border border-primary/30 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-on-primary transition-all duration-500">
+<span class="material-symbols-outlined">arrow_outward</span>
+</button>
+<span class="font-data-sm text-data-sm tracking-widest text-outline">EXPLORE</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- SOUTH Section -->
+<section class="mb-32" id="south">
+<div class="flex items-end justify-between mb-12 border-b border-outline-variant/20 pb-4">
+<h2 class="font-headline-lg text-headline-lg text-primary italic">The South</h2>
+<span class="font-data-sm text-data-sm text-outline tracking-widest uppercase">Emerald Coastlines</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
+<!-- Kerala -->
+<div class="group relative overflow-hidden thin-gold-border bg-surface-container-low">
+<div class="aspect-[21/9] overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="A luxury houseboat of dark teak wood gliding silently through the emerald backwaters of Kerala at dawn. The water is perfectly still, reflecting the dense tropical palm canopy and a soft, misty sunrise. The design features minimalist luxury interiors visible through large open windows. The mood is tranquil, lush, and private, emphasizing the connection between high-end comfort and untamed nature." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAsFO6mVyLoU7sIlV2-J3wHIUxKMbBWRFaL_feF6-6fq80pG1bN4_EI-q_4kUqtO-mjWr_E6S68zqB9MyV__AOYZSKm2sr3hZlsoH-Y1DbYunIROxz3MROKI26UEc2LLN8Hdydv3hPwiMgKShUQeIDTa3iMMHHvTPWwlszM6RBzY8DDEh1VAahQs_m6vtDZs4MtpW-6UebtC17VPfWnmTTigkVTluBBEgEp-np6TJ3Qmz-vpvdKuH8RwR82vvqwpsaKc2ZGXp3PNqfW"/>
+</div>
+<div class="p-8 flex justify-between items-end">
+<div class="max-w-md">
+<div class="flex items-center gap-4 mb-4">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Kerala</h3>
+<span class="bg-primary/10 text-primary text-[10px] px-2 py-1 tracking-tighter border border-primary/20">LAUNCHING SOON</span>
+</div>
+<p class="font-body-sm text-body-sm text-secondary leading-relaxed">An emerald sanctuary where time dissolves in the backwaters.</p>
+</div>
+<div class="text-right">
+<button class="w-14 h-14 rounded-full border border-primary/30 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-on-primary transition-all duration-500 mx-auto mb-2">
+<span class="material-symbols-outlined">arrow_outward</span>
+</button>
+<span class="font-data-sm text-data-sm tracking-widest text-outline">EXPLORE</span>
+</div>
+</div>
+</div>
+<!-- Karnataka -->
+<div class="group relative overflow-hidden thin-gold-border bg-surface-container-low">
+<div class="aspect-[21/9] overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="A contemporary sanctuary located within the ancient boulder-strewn landscape of Hampi, Karnataka. The architecture uses raw granite blocks and matte gold finishes, blending seamlessly into the monolithic surroundings. The lighting is dramatic, casting long shadows across the architectural forms during sunset. The visual style is archaeological luxury, merging timeless heritage with modern minimalist precision." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCDqUJGrzkojtl0FoypwjCp2jIshWJcc1IgskfWGYlNMmWUWMjqKlxEFanvISvjoPZ2_kF9cz_CfA2Zgcs-LYtDytBFM9cgIIxP4qghvsqsFsQWXGS6_ObFuj8JkrwqCCbtjDj1f7dFgGJK94keZkclJhlEPxJqCuhNXEXNhp-rKX0zaxUngmwCqdv43MvCMMB7eBIO327FLpI3d_YiSkDMRHEfQunUtUjBKOvfqoexG4OCFyGmRTGtS7zW_ECeB6fCEKCEG4ccHFsS"/>
+</div>
+<div class="p-8 flex justify-between items-end">
+<div class="max-w-md">
+<div class="flex items-center gap-4 mb-4">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Karnataka</h3>
+<span class="bg-primary/10 text-primary text-[10px] px-2 py-1 tracking-tighter border border-primary/20">LAUNCHING SOON</span>
+</div>
+<p class="font-body-sm text-body-sm text-secondary leading-relaxed">Raw granite monoliths meet the coffee-scented mists of Coorg.</p>
+</div>
+<div class="text-right">
+<button class="w-14 h-14 rounded-full border border-primary/30 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-on-primary transition-all duration-500 mx-auto mb-2">
+<span class="material-symbols-outlined">arrow_outward</span>
+</button>
+<span class="font-data-sm text-data-sm tracking-widest text-outline">EXPLORE</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- UT Section: Editorial Bento -->
+<section class="mb-32" id="ut">
+<div class="flex items-end justify-between mb-12 border-b border-outline-variant/20 pb-4">
+<h2 class="font-headline-lg text-headline-lg text-primary italic">Territories</h2>
+<span class="font-data-sm text-data-sm text-outline tracking-widest uppercase">The Sovereign Escapes</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter h-auto md:h-[600px]">
+<!-- Ladakh -->
+<div class="md:col-span-8 group relative overflow-hidden thin-gold-border bg-surface-container-low">
+<img class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" data-alt="A hyper-minimalist glamping setup in the high-altitude desert of Ladakh. The dome-like structure is made of translucent materials, glowing against the backdrop of snow-capped mountains and the Milky Way galaxy. The ground is dry, cracked earth, and the aesthetic is futuristic and cinematic. The primary colors are deep blues of the night sky and the warm interior amber glow of the residence." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBvZdGtN-jqiXutni0WaMY201GXi92q87vpbyVR6L9t2_-M2aJcNrHck6pqHfVSsWXpZ3Y-DVg3OUOVDRx_3SGgpsG9itKcb-CcoKHV4IFPL0qA-stLW4O3fGoHZUo-E5ECyUx4rqNKwfM1Vgh-cHmHRWwm6zQiID_ONQAZd5uDWDOfj7aXlmpaCxcdDcrllKtQZN-3d9eXq40RBlqNh-GX12SLivz5Z8Iw72q-wG4bmYNZ0WlGPRlFLqZmAwIfVmEdRR31HRfEij-b"/>
+<div class="absolute inset-0 luxury-gradient flex flex-col justify-end p-12">
+<div class="flex items-center gap-4 mb-4">
+<h3 class="font-headline-lg text-headline-lg text-on-surface">Ladakh</h3>
+<span class="bg-primary text-on-primary-container text-[12px] px-3 py-1 font-bold">LIMITED COLLECTION</span>
+</div>
+<p class="font-body-lg text-body-lg text-secondary max-w-xl mb-6">Stark beauty at the roof of the world, where silence is the ultimate luxury.</p>
+<button class="flex items-center gap-4 text-primary font-data-sm tracking-widest hover:gap-8 transition-all">
+                            EXPLORE THE HIGH DESERT <span class="material-symbols-outlined">trending_flat</span>
+</button>
+</div>
+</div>
+<!-- Lakshadweep -->
+<div class="md:col-span-4 group relative overflow-hidden thin-gold-border bg-surface-container-low">
+<img class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" data-alt="An aerial view of a private overwater villa in the turquoise lagoons of Lakshadweep. The structure is white and minimalist, connected by a slender wooden walkway. The coral reefs are visible through the crystal-clear water. The style is bright and tropical but maintains a sophisticated, high-end luxury feel with clean lines and exclusive seclusion. The vibe is one of pure, unadulterated serenity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDqUv5xefuTc1kW7-wg7O0EHsQdPIEQEPdCFt0neeVekbSLKwVPYx9vA-qaxkiOuzpLAHSCZ-uZFYL9poSpVBtMafOJCoC7ROnAcd3E8FXvOjc-r4PhEFtSMEm48GBXvMLMneRV-3IDSqnatSlKw89Pv_SmS4tpoP8u_c8-na9wxX5Mb-8y9bpFuBgHJN_QpIMwn8VPJCEoCGGcs1vYGaofwlJywIsyxRakcKxMTlBhkoR02IXMtcj1JgJfQ3Pss6ypYD2EJYUGbkhj"/>
+<div class="absolute inset-0 luxury-gradient flex flex-col justify-end p-8">
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-2">Lakshadweep</h3>
+<p class="font-body-sm text-body-sm text-secondary mb-6">Untouched coral atolls and turquoise horizons.</p>
+<button class="w-10 h-10 rounded-full border border-primary/30 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-on-primary transition-all duration-500">
+<span class="material-symbols-outlined">north_east</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- International Expansion -->
+<section class="mt-section-padding pt-24 border-t border-outline-variant/10">
+<div class="text-center mb-24">
+<p class="font-data-sm text-data-sm tracking-[0.4em] text-outline mb-4">GLOBAL HORIZONS</p>
+<h2 class="font-headline-lg text-headline-lg text-secondary/60">The Future of MHOMES</h2>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-gutter opacity-60 hover:opacity-100 transition-opacity duration-700">
+<div class="text-center group">
+<div class="aspect-square rounded-full overflow-hidden mb-6 border border-outline-variant/30 group-hover:border-primary/50 transition-all p-2">
+<img class="w-full h-full object-cover rounded-full grayscale group-hover:grayscale-0 transition-all" data-alt="A blurred, artistic shot of a Dubai skyline penthouse pool at dusk, with soft gold and violet lighting. The focus is on the rippling water and distant architectural silhouettes. Atmospheric and dreamy visual style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCCCrA36yjH7925BLSbGJKnKhyut7MrVXy_OdSPV4-FtxThh0hoEliBP7pNeo6E4HBZ5FrlY13v-Hp5kkswBUDgOjaLvyxD5xcv7C_qW4TD2DdNAjKDr9t-vq4UWJMPAJchpx8O5VfkReWu8H-HCSv3Jh6wjb9iTQPoKfk5UFZsXchPo7afthCHCHzX6feNFQADBJgi7S0MAeMqFxlIcB6Jor6wrg1aOKVR5MSP7P8pH_EdOFYVkLRKwUHJfQAVvhRxunPtNMzRhRRi"/>
+</div>
+<h4 class="font-data-lg text-data-lg text-secondary group-hover:text-primary">DUBAI</h4>
+<p class="font-data-sm text-data-sm text-outline tracking-widest mt-2">COMING 2025</p>
+</div>
+<div class="text-center group">
+<div class="aspect-square rounded-full overflow-hidden mb-6 border border-outline-variant/30 group-hover:border-primary/50 transition-all p-2">
+<img class="w-full h-full object-cover rounded-full grayscale group-hover:grayscale-0 transition-all" data-alt="Soft-focus tropical greenery and a sliver of white sand beach in the Maldives. High-key lighting, airy and light aesthetic, focusing on the texture of palm leaves. Minimalist luxury feeling." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBshCWibGZ94SL8gp059_NgOo4HCzdxFD6yPL30RD2QMF3FDPIfYQQGS4D0mItSwpdtzL-ajzjc1gX2PW5wlZV-JFPeDFaq4icnTRhnCCQBd6H-22GXK4deD97Lmilo7nI70rj8uQh9xv5qpxFPIlLhxoyqQz5bXQYVWp_hrgy1HdRU7BC_G1IMHC4mF5euZimSwbdxJCHdYH60x_Bip-X8IZQaV0OQNZZF_UxujTXDeWyzp1oegjBF_H2l14kfhiXKamUPhkceb1tl"/>
+</div>
+<h4 class="font-data-lg text-data-lg text-secondary group-hover:text-primary">MALDIVES</h4>
+<p class="font-data-sm text-data-sm text-outline tracking-widest mt-2">COMING 2025</p>
+</div>
+<div class="text-center group">
+<div class="aspect-square rounded-full overflow-hidden mb-6 border border-outline-variant/30 group-hover:border-primary/50 transition-all p-2">
+<img class="w-full h-full object-cover rounded-full grayscale group-hover:grayscale-0 transition-all" data-alt="Close-up of Balinese stone carvings covered in moss with a soft bokeh background of a jungle villa. Earthy tones, moody lighting, emphasizing organic luxury and heritage." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD7ezBZnS0MpJpJtRfPZ5qWaoLStmpl9QpCYDrEqYJ-sSYTNDET_jMSrRehYTXztVu8K0d6A7XDO8QYQjhgtUKEFHXr_yBDIe-rQstNHsCsEdGEoJiT0ezX1Rot-gRHgeWz5P-aWmrpJW8wfdVlYG78Xxv2phP2NMds8Lwm6XebgfZ7rgztgLpd6NwpMp6E_cF39NH_v2KQr1xr3ZQlO5fYRqEAjgM1olYuUNN8D8o4Y5oKxbzE5XioiW8zCZkOW6JcdTwKgGlRR6kz"/>
+</div>
+<h4 class="font-data-lg text-data-lg text-secondary group-hover:text-primary">BALI</h4>
+<p class="font-data-sm text-data-sm text-outline tracking-widest mt-2">COMING 2026</p>
+</div>
+<div class="text-center group">
+<div class="aspect-square rounded-full overflow-hidden mb-6 border border-outline-variant/30 group-hover:border-primary/50 transition-all p-2">
+<img class="w-full h-full object-cover rounded-full grayscale group-hover:grayscale-0 transition-all" data-alt="Dramatic cliffside in Thailand overlooking the Andaman sea at blue hour. The lighting is cool with small points of warm light from a distant resort. Ethereal and serene mood." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB6jm5C8TCdcx_VaEmLX5xxnDKgw417xiZBYNLmqPXDJCDGHrdVTubZ6uVFk22ejMLCASLsNW0sorkdd-Spc0xHs3SLiGF87m9F_m4X00Uns_-ucu-ECtpCoWH0S46ZYD5VTLt35HcMo2vy__KFeXwZXxbkQ12W79XzBtLQgNQdDI7x4HRaB_YcjPnv4IPkUjtULdKyRKSTlmmYY0sz1JWOlOFXHhkLuqbMt5G6ZTPr3zoA47YAmOAHrdkPW54Qsjh30lS6_vOPNFAS"/>
+</div>
+<h4 class="font-data-lg text-data-lg text-secondary group-hover:text-primary">THAILAND</h4>
+<p class="font-data-sm text-data-sm text-outline tracking-widest mt-2">COMING 2026</p>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full relative mt-section-padding border-t border-outline-variant/30 bg-surface-container-lowest dark:bg-background">
+<div class="flex flex-col md:flex-row justify-between items-center px-margin-desktop py-12 max-w-container-max mx-auto">
+<div class="mb-8 md:mb-0">
+<span class="font-headline-md text-headline-md text-primary">MHOMES</span>
+<p class="font-body-sm text-body-sm tracking-wide text-secondary mt-2">© 2024 MHOMES. A PRIVATE SANCTUARY.</p>
+</div>
+<div class="flex gap-8">
+<a class="font-body-sm text-body-sm tracking-wide text-secondary hover:text-primary transition-all duration-300" href="#">PRIVACY</a>
+<a class="font-body-sm text-body-sm tracking-wide text-secondary hover:text-primary transition-all duration-300" href="#">TERMS</a>
+<a class="font-body-sm text-body-sm tracking-wide text-secondary hover:text-primary transition-all duration-300" href="#">CONTACT</a>
+<a class="font-body-sm text-body-sm tracking-wide text-secondary hover:text-primary transition-all duration-300" href="#">INSTAGRAM</a>
+</div>
+</div>
+</footer>
+<!-- Decorative Watermark -->
+<div class="fixed bottom-10 right-10 opacity-5 pointer-events-none z-0">
+<span class="material-symbols-outlined text-[300px]">nature</span>
+</div>
+<script>
+        // Intersection Observer for reveal animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.editorial-reveal').forEach(el => observer.observe(el));
+
+        // Smooth scroll for regional links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Initialize reveal for static sections
+        window.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => {
+                document.querySelectorAll('.editorial-reveal').forEach((el, index) => {
+                    setTimeout(() => el.classList.add('visible'), index * 100);
+                });
+            }, 100);
+        });
+    </script>
+</body></html>
