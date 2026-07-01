@@ -1,32 +1,29 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import useReveal from '../hooks/useReveal'
-
-const destinations = [
-  'Rajasthan',
-  'Uttarakhand',
-  'Himachal Pradesh',
-  'Kerala',
-  'Karnataka',
-  'Goa',
-  'West Bengal',
-  'Odisha',
-  'Maharashtra',
-  'Ladakh',
-  'Lakshadweep',
-  'Other / Not Sure Yet',
-]
+import { submitInquiry, fetchLocations } from '../services/api'
 
 const enquiryTypes = [
-  { id: 'booking', icon: 'cottage', label: 'Book a Stay' },
-  { id: 'invest', icon: 'trending_up', label: 'Investment Partner' },
-  { id: 'list', icon: 'home_work', label: 'List My Property' },
+  { id: 'book_now', icon: 'event_available', label: 'Book Now' },
+  { id: 'membership', icon: 'card_membership', label: 'Membership' },
   { id: 'general', icon: 'forum', label: 'General Enquiry' },
 ]
 
 export default function Inquiry() {
   const pageRef = useReveal()
-  const [enquiryType, setEnquiryType] = useState('booking')
+  const [enquiryType, setEnquiryType] = useState('book_now')
+  const [destinations, setDestinations] = useState([])
   const [submitted, setSubmitted] = useState(false)
+
+  useEffect(() => {
+    fetchLocations()
+      .then(data => {
+        if (Array.isArray(data)) {
+          setDestinations(data.map(loc => loc.name));
+        }
+      })
+      .catch(err => console.error('Error fetching locations:', err))
+  }, [])
+
   const [loading, setLoading] = useState(false)
   const [form, setForm] = useState({
     name: '',
@@ -45,19 +42,10 @@ export default function Inquiry() {
     e.preventDefault()
     setLoading(true)
     try {
-      const res = await fetch('/api/inquiry', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ...form, enquiryType }),
-      })
-      if (res.ok) {
-        setSubmitted(true)
-      } else {
-        alert('Something went wrong. Please try again.')
-      }
-    } catch {
-      // Server not running locally — show success for demo
+      await submitInquiry({ ...form, enquiryType })
       setSubmitted(true)
+    } catch (err) {
+      alert(err.message || 'Something went wrong. Please try again.')
     } finally {
       setLoading(false)
     }
@@ -215,7 +203,7 @@ export default function Inquiry() {
                   <input name="email" type="email" required className="luxury-input" placeholder="your@email.com" value={form.email} onChange={handleChange} />
                 </div>
 
-                {(enquiryType === 'booking' || enquiryType === 'general') && (
+                {(enquiryType === 'book_now' || enquiryType === 'general') && (
                   <>
                     <div className="reveal">
                       <label className="form-label">PREFERRED DESTINATION</label>
@@ -250,15 +238,14 @@ export default function Inquiry() {
 
                 <div className="reveal">
                   <label className="form-label">
-                    {enquiryType === 'invest' ? 'TELL US ABOUT YOUR INVESTMENT INTEREST' : enquiryType === 'list' ? 'DESCRIBE YOUR PROPERTY' : 'SPECIAL REQUESTS OR MESSAGE'}
+                    {enquiryType === 'membership' ? 'WHY ARE YOU INTERESTED IN MEMBERSHIP?' : 'SPECIAL REQUESTS OR MESSAGE'}
                   </label>
                   <textarea
                     name="message"
                     className="luxury-input"
                     rows={4}
                     placeholder={
-                      enquiryType === 'invest' ? 'What draws you to MHOMES as an investment opportunity?'
-                      : enquiryType === 'list' ? 'Tell us about your property — location, size, uniqueness...'
+                      enquiryType === 'membership' ? 'Tell us why you would like to join the MHOMES private membership...'
                       : 'Share any specific requirements, preferences, or occasions...'
                     }
                     value={form.message}

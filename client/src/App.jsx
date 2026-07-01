@@ -7,6 +7,8 @@ import BookProperty from './pages/BookProperty'
 import AboutUs from './pages/AboutUs'
 import Inquiry from './pages/Inquiry'
 
+import AdminDashboard from './pages/AdminDashboard'
+
 function App() {
   return (
     <BrowserRouter>
@@ -17,6 +19,7 @@ function App() {
         <Route path="/book"      element={<BookProperty />} />
         <Route path="/about"     element={<AboutUs />} />
         <Route path="/inquiry"   element={<Inquiry />} />
+        <Route path="/admin"     element={<AdminDashboard />} />
       </Routes>
       <Footer />
     </BrowserRouter>
